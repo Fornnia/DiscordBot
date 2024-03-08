@@ -2,6 +2,7 @@ import discord, os, requests
 from discord.ext import commands
 from discord.ext.commands import bot
 from config import TOKEN
+from eco_list import eco_list
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -29,5 +30,10 @@ def get_duck_image_url():
 async def duck(ctx):
     image_url = get_duck_image_url()
     await ctx.send(image_url)
+
+@bot.command()
+async def eco(ctx: commands.Context):
+    random_advice = random.choice(eco_list)
+    await ctx.send(random_advice)   
     
 bot.run(TOKEN)
